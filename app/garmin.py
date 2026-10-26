@@ -12,6 +12,9 @@ def get_token():
     headers = {"Authorization": f"ApiKey {API_KEY}"}
 
     resp = requests.post(url, headers=headers, timeout=30)
+    key = os.getenv("GARMIN_API_KEY")  # usa il tuo nome
+    print("chiave presente:", bool(key), "| lunghezza:", len(key or ""))
+    print("risposta Garmin:", resp.status_code, resp.text)
     resp.raise_for_status()
     return resp.text
 
