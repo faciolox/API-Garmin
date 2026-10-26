@@ -1,0 +1,20 @@
+name: Riepilogo Garmin
+on:
+  schedule:
+    - cron: "30 6 * * *"   # UTC, come su Render
+  workflow_dispatch:        # aggiunge il pulsante "Run workflow" per i test
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements.txt
+      - run: python main.py
+        env:
+          MAIL: ${{ secrets.MAIL }}
+          GMAIL_PSW: ${{ secrets.GMAIL_PSW }}
+          GARMIN_API_KEY: ${{ secrets.GARMIN_API_KEY }}
