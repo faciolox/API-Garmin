@@ -1,7 +1,5 @@
 name: Riepilogo Garmin
 on:
-  schedule:
-    - cron: "13 4 * * *"   # UTC, come su Render
   workflow_dispatch:        # aggiunge il pulsante "Run workflow" per i test
 
 jobs:
